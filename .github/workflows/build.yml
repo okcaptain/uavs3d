@@ -21,6 +21,7 @@ jobs:
           curDir=$(pwd)
           echo "curDir=$curDir" >> $GITHUB_ENV
           chmod +x ./version.sh
+          ./version.sh
           cd build/android/ndk/jni
           ${{ env.ANDROID_NDK_HOME }}/ndk-build
           ls -al ./
