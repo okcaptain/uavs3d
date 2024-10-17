@@ -25,7 +25,8 @@ jobs:
           cd build/android/ndk/jni
           ${{ env.ANDROID_NDK_HOME }}/ndk-build
           ls -al ./
-          ls -al ${{ env.curDir }}
-          ls -al ${{ env.curDir }}/build/
-          ls -al ${{ env.curDir }}/build/android/
-          ls -al ${{ env.curDir }}/build/android/ndk/
+          cd ../../../../
+          ls -al ./
+          ls -al ./build/
+          ls -al ./build/android/
+          ls -al ./build/android/ndk/
