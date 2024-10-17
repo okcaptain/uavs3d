@@ -17,6 +17,7 @@ jobs:
       - name: Build
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+          ANDROID_SDK_HOME: ${{ steps.setup-ndk.outputs.sdk-path }}
         run: |
-          ls -al ${{ env.ANDROID_NDK_HOME }}/cmake/
           ls -al ${{ env.ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/
+          ls -al ${{ env.ANDROID_SDK_HOME }}/cmake/
