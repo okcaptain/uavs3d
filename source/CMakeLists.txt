@@ -2,31 +2,31 @@
 set(LIBNAME uavs3d)
 
 
-MESSAGE(STATUS "CMAKE_SYSTEM_PROCESSOR: \t\t\t: ${CMAKE_SYSTEM_PROCESSOR}")
+MESSAGE(STATUS "PROJECT_ABI: \t\t\t: ${PROJECT_ABI}")
 
 # check cpu
-if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "AMD64" OR
-   "${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "x86_64")
+if("${PROJECT_ABI}" STREQUAL "AMD64" OR
+   "${PROJECT_ABI}" STREQUAL "x86_64")
   if(${CMAKE_SIZEOF_VOID_P} EQUAL 4)
     set(UAVS3D_TARGET_CPU "x86")
   elseif(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
     set(UAVS3D_TARGET_CPU "x86_64")
   else()
     message(FATAL_ERROR
-              " Unexpected pointer size ${CMAKE_SIZEOF_VOID_P} for ${CMAKE_SYSTEM_PROCESSOR}\n")
+              " Unexpected pointer size ${CMAKE_SIZEOF_VOID_P} for ${PROJECT_ABI}\n")
   endif()
-elseif("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "i386" OR
-       "${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "x86")
+elseif("${PROJECT_ABI}" STREQUAL "i386" OR
+       "${PROJECT_ABI}" STREQUAL "x86")
   set(UAVS3D_TARGET_CPU "x86")
-elseif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "aarch64" OR
-       "${CMAKE_SYSTEM_PROCESSOR}" MATCHES "arm64")
+elseif("${PROJECT_ABI}" MATCHES "aarch64" OR
+       "${PROJECT_ABI}" MATCHES "arm64")
   set(UAVS3D_TARGET_CPU "arm64")
-elseif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "^arm")
+elseif("${PROJECT_ABI}" MATCHES "^arm")
   set(UAVS3D_TARGET_CPU "armv7")
-elseif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "loongarch64")
+elseif("${PROJECT_ABI}" MATCHES "loongarch64")
   set(UAVS3D_TARGET_CPU "loongarch64")
 else()
-  message(WARNING "unsupported architecture: ${CMAKE_SYSTEM_PROCESSOR}\n")
+  message(WARNING "unsupported architecture: ${PROJECT_ABI}\n")
   set(UAVS3D_TARGET_CPU "generic")
 endif()
 
