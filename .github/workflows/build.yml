@@ -30,14 +30,14 @@ jobs:
           mkdir -p $BUILD_DIR
           ABI=armeabi-v7a
           CMAKE_BUILD_DIR=$BASE_DIR/avs3_build_$ABI
-          mkdir -p ${CMAKE_BUILD_DIR}
-          cd ${CMAKE_BUILD_DIR}
+          mkdir -p $CMAKE_BUILD_DIR
+          cd $CMAKE_BUILD_DIR
           ${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake .. \  
           -DCMAKE_VERBOSE_MAKEFILE=ON \ 
-          -DANDROID_PLATFORM=${ANDROID_PLATFORM} \
+          -DANDROID_PLATFORM=$ANDROID_PLATFORM \
           -DANDROID_ABI=$ABI \
           -DCMAKE_SYSTEM_PROCESSOR=$ABI \
-          -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+          -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
           -DCMAKE_INSTALL_PREFIX=$BUILD_DIR/external/$ABI \
           -DCOMPILE_10BIT=1 \
           -DBUILD_SHARED_LIBS=1 \
