@@ -35,6 +35,8 @@ jobs:
           mkdir -p $CMAKE_BUILD_DIR
           ls -al $BASE_DIR
           cd $CMAKE_BUILD_DIR
+          mkdir -p $BUILD_DIR/external/$ABI
+          ls -al $BUILD_DIR/external
           ${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake .. \  
           -DCMAKE_VERBOSE_MAKEFILE=ON \ 
           -DANDROID_ABI=$ABI \
