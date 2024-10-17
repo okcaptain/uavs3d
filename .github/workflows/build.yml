@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: nttld/setup-ndk@v1
-        id: setup-ndk
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          ndk-version: r21e
-          add-to-path: false
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Build
-        env:
-          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-          ANDROID_SDK_HOME: ${{ steps.setup-ndk.outputs.sdk-path }}
         run: |
-          ls -al ${{ env.ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/
-          ls -al ${{ env.ANDROID_SDK_HOME }}/cmake/
+          ls -al ${{ env.ANDROID_SDK_ROOT }}/ndk/
+          ls -al ${{ env.ANDROID_SDK_ROOT }}/cmake/
