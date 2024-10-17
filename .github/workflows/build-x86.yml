@@ -1,0 +1,42 @@
+name: build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build
+        run: |
+          ls -al ${{ env.ANDROID_SDK_ROOT }}/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64
+          ls -al ${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake
+          
+          ANDROID_NDK_HOME=${{ env.ANDROID_SDK_ROOT }}/ndk/27.1.12297006
+          TOOLCHAIN_PREFIX=${{ env.ANDROID_SDK_ROOT }}/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64
+          CMAKE_EXECUTABLE=${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake
+          BASE_DIR=$(pwd)
+          ls -al $BASE_DIR
+          BUILD_DIR=$BASE_DIR/build
+          mkdir -p $BUILD_DIR
+          ls -al $BUILD_DIR
+          ABI=x86
+          CMAKE_BUILD_DIR=$BASE_DIR/avs3_build_$ABI
+          mkdir -p $CMAKE_BUILD_DIR
+          ls -al $BASE_DIR
+          cd $CMAKE_BUILD_DIR
+          mkdir -p $BUILD_DIR/external/$ABI
+          ls -al $BUILD_DIR/external
+          ANDROID_PLATFORM=21
+          $CMAKE_EXECUTABLE .. -DCMAKE_VERBOSE_MAKEFILE=ON -DANDROID_ABI=$ABI -DANDROID_PLATFORM=${ANDROID_PLATFORM} -DCMAKE_SYSTEM_PROCESSOR=$ABI -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake -DCMAKE_INSTALL_PREFIX=$BUILD_DIR/external/$ABI -DCOMPILE_10BIT=1 -DBUILD_SHARED_LIBS=1 -DCMAKE_USE_PTHREADS_INIT=0
+          
