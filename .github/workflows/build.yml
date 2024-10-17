@@ -28,11 +28,12 @@ jobs:
           BASE_DIR=$(cd "$(dirname "$0")" && pwd)
           ls -al $BASE_DIR
           BUILD_DIR=$BASE_DIR/build
-          ls -al $BUILD_DIR
           mkdir -p $BUILD_DIR
+          ls -al $BUILD_DIR
           ABI=armeabi-v7a
           CMAKE_BUILD_DIR=$BASE_DIR/avs3_build_$ABI
           mkdir -p $CMAKE_BUILD_DIR
+          ls -al $CMAKE_BUILD_DIR
           cd $CMAKE_BUILD_DIR
           ${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake .. \  
           -DCMAKE_VERBOSE_MAKEFILE=ON \ 
