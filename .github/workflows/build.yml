@@ -30,3 +30,8 @@ jobs:
           ls -al ./build/
           ls -al ./build/android/
           ls -al ./build/android/ndk/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: avs3
+          path: ./build/android/ndk/libs/
