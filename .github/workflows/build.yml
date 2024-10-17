@@ -33,7 +33,7 @@ jobs:
           ABI=armeabi-v7a
           CMAKE_BUILD_DIR=$BASE_DIR/avs3_build_$ABI
           mkdir -p $CMAKE_BUILD_DIR
-          ls -al $CMAKE_BUILD_DIR
+          ls -al $BASE_DIR
           cd $CMAKE_BUILD_DIR
           ${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake .. \  
           -DCMAKE_VERBOSE_MAKEFILE=ON \ 
