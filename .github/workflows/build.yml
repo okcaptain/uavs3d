@@ -19,5 +19,5 @@ jobs:
 
       - name: Build
         run: |
-          ls -al ${{ env.ANDROID_SDK_ROOT }}/ndk/
-          ls -al ${{ env.ANDROID_SDK_ROOT }}/cmake/
+          ls -al ${{ env.ANDROID_SDK_ROOT }}/ndk/27.1.12297006/toolchains/llvm/prebuilt/
+          ls -al ${{ env.ANDROID_SDK_ROOT }}/cmake/3.22.1/bin/cmake
