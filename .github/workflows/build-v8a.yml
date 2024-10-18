@@ -37,4 +37,5 @@ jobs:
           ls -al ..
           make
           make install
+          cat $BUILD_DIR/external/arm64-v8a/lib/pkgconfig/uavs3d.pc
           
