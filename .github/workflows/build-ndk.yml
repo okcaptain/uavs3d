@@ -14,16 +14,22 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r21e
+          add-to-path: false
+
+      - name: Build
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build
         run: |
-          ANDROID_NDK_HOME=${{ env.ANDROID_SDK_ROOT }}/ndk/27.1.12297006
           chmod +x ./version.sh
           ./version.sh
           cd build/android/ndk/jni
-          $ANDROID_NDK_HOME/ndk-build
+          ${{ env.ANDROID_NDK_HOME }}/ndk-build
           ls -al ./
           cd ../../../../
           ls -al ./
