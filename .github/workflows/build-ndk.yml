@@ -1,0 +1,37 @@
+name: build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build
+        run: |
+          ANDROID_NDK_HOME=${{ env.ANDROID_SDK_ROOT }}/ndk/27.1.12297006
+          chmod +x ./version.sh
+          ./version.sh
+          cd build/android/ndk/jni
+          $ANDROID_NDK_HOME/ndk-build
+          ls -al ./
+          cd ../../../../
+          ls -al ./
+          ls -al ./build/
+          ls -al ./build/android/
+          ls -al ./build/android/ndk/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: avs3
+          path: ./build/android/ndk/libs/
