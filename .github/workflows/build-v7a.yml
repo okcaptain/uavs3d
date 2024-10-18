@@ -1,4 +1,4 @@
-name: build
+name: build-v7a
 
 on:
   workflow_dispatch:

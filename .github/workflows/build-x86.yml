@@ -1,4 +1,4 @@
-name: build
+name: build-x86
 
 on:
   workflow_dispatch:
