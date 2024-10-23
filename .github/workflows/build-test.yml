@@ -42,9 +42,12 @@ jobs:
           ls -al $BUILD_DIR/external/$ABI/include
           ls -al $BUILD_DIR/external/$ABI/lib
           cat $BUILD_DIR/external/$ABI/lib/libuavs3d.a
+          
+          echo "BUILD_DIR=$BUILD_DIR" >> $GITHUB_ENV
+      
 
       - uses: actions/upload-artifact@v4.3.6
         with:
           name: libuavs3d
-          path: $BUILD_DIR/external/
+          path: ${{ env.BUILD_DIR }}/external/
           
