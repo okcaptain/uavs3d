@@ -109,10 +109,6 @@ MESSAGE(STATUS "uavs3d version \t\t: ${uavs3d_version}")
 
 MESSAGE(STATUS "Target CPU\t\t\t: ${UAVS3D_TARGET_CPU}")
 # pkg-config
-if(NOT CMAKE_SYSTEM_NAME STREQUAL "Android")
-  find_package(Threads REQUIRED)
-  target_link_libraries (${LIBNAME} PRIVATE Threads::Threads)
-endif()
 set(prefix "${CMAKE_INSTALL_PREFIX}")
 set(includedir "include")
 set(libdir "lib")
