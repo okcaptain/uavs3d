@@ -42,4 +42,9 @@ jobs:
           ls -al $BUILD_DIR/external/$ABI/include
           ls -al $BUILD_DIR/external/$ABI/lib
           cat $BUILD_DIR/external/$ABI/lib/libuavs3d.a
+
+      - uses: actions/upload-artifact@v4.3.6
+        with:
+          name: libuavs3d
+          path: $BUILD_DIR/external/
           
