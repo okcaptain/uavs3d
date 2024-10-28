@@ -306,7 +306,6 @@ intra_pred_hor_w128_y:
 intra_pred_hor_end:
     pop {r4, pc}
 
-.global DC_tab_div
 DC_tab_div:
 .byte 204, 170, 146, 128, 113, 102, 93, 85, 78, 73, 68, 64, 60, 56, 53, 51, 48, 46, 44, 42, 32, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 4
 //void uavs3d_intra_pred_dc_armv7(pel *src, pel *dst, int i_dst, int width, int height, int avail, int sample_bit_depth)
